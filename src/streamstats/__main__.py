@@ -3,8 +3,8 @@ import logging
 import sys
 from pathlib import Path
 
-from . import analysis, report
-from .errors import StreamStatsError
+from streamstats import analysis, report
+from streamstats.errors import StreamStatsError
 
 
 def main() -> int:
@@ -57,8 +57,8 @@ def main() -> int:
         for input_file in args.INPUT:
             if path_output == Path(input_file).resolve():
                 raise StreamStatsError(f"{input_file} уже содержит данные.")
-        stats, error_critical = analysis.analyze(args.INPUT, args.format, args.skip_invalid)
-        report.write_report(stats, error_critical, args.output)
+        stats, error_counts, critical_counts = analysis.analyze(args.INPUT, args.format, args.skip_invalid)
+        report.write_report(stats, error_counts, critical_counts, args.output)
     except StreamStatsError as error:
         print(f"ERROR: {error}", file=sys.stderr)
         return 2
