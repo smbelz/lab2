@@ -9,7 +9,7 @@ def top(counts: dict[str, int]) -> list[dict]:
     return [{"sources": source, "count": cnt} for source, cnt in sorted_items[:5]]
 
 
-def top_combined(error_counts: dict[str, int], critical_counts: dict[str, int], ) -> list[dict]:
+def top_combined(error_counts: dict[str, int], critical_counts: dict[str, int]) -> list[dict]:
     """Top-N с приоритетом CRITICAL.
     Для каждого источника:
         critical = critical_counts.get(source, 0)
@@ -17,16 +17,15 @@ def top_combined(error_counts: dict[str, int], critical_counts: dict[str, int], 
     Сортировка: сначала по critical (убывание), затем по error (убывание)
     """
     sources = set(error_counts) | set(critical_counts)
-    rows = [
-        {
-            "sources": source,
-            "critical": critical_counts.get(source, 0),
-            "error": error_counts.get(source, 0),
-        }
+    pairs: list[tuple[str, int, int]] = [
+        (source, critical_counts.get(source, 0), error_counts.get(source, 0))
         for source in sources
     ]
-    rows.sort(key=lambda r: (-r["critical"], -r["error"]))
-    return rows[:5]
+    pairs.sort(key=lambda p: (-p[1], -p[2]))
+    return [
+        {"sources": source, "critical": critical, "error": error}
+        for source, critical, error in pairs[:5]
+    ]
 
 
 def write_report(data: dict, error_counts: dict, critical_counts: dict, output_file: str) -> None:
