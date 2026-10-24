@@ -2,7 +2,7 @@
 
 from datetime import datetime
 
-from .errors import StreamStatsParseError, StreamStatsTimestampError
+from streamstats.errors import StreamStatsParseError, StreamStatsTimestampError
 
 LEVELS = ["DEBUG", "INFO", "WARNING", "ERROR", "CRITICAL"]
 
