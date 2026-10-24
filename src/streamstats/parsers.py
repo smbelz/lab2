@@ -6,8 +6,8 @@ import logging
 from collections.abc import Generator
 from json import JSONDecodeError
 
-from .errors import StreamStatsError
-from .models import validate
+from streamstats.errors import StreamStatsError
+from streamstats.models import validate
 
 logger = logging.getLogger(__name__)
 
