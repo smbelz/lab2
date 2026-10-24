@@ -25,31 +25,39 @@ def main() -> int:
         filename="WARNING.log",
         encoding="utf-8",
     )
-    parser = argparse.ArgumentParser()
+    parser = argparse.ArgumentParser(
+        prog="streamstats", 
+        description="Потоковый анализатор файлов CSV и JSONL"
+    )
     parser.add_argument(
         "command",
         choices=["analyze"],
         type=str,
+        help="Команда для запуска"
     )
     parser.add_argument(
         "INPUT",
         type=str,
         nargs="+",
+        help="Один или несколько путей к файлам .jsonl .csv"
     )
     parser.add_argument(
         "--format",
         type=str,
         choices=["jsonl", "csv"],
         required=True,
+        help="Формат входных файлов"
     )
     parser.add_argument(
         "--output",
         type=str,
         default="-",
+        help="Путь к файлу отчета (по умолчанию вывод в stdout)"
     )
     parser.add_argument(
         "--skip-invalid",
         action="store_true",
+        help="Пропускать некорректные строки с WARNING"
     )
     args = parser.parse_args()
     try:
