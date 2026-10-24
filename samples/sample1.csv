@@ -1,0 +1,6 @@
+timestamp,level,source,message
+2024-01-01T00:00:00Z,INFO,app,started
+2024-01-01T00:00:05Z,ERROR,db,connection lost
+2024-01-01T00:00:10Z,CRITICAL,db,out of memory
+2024-01-01T00:00:15Z,CRITICAL,app,out of memory
+2024-01-01T00:00:20Z,WARNING,app,slow
