@@ -1,0 +1,5 @@
+{"timestamp": "2024-01-01T00:00:00Z", "level": "INFO", "source": "app", "message": "started"}
+{"timestamp": "2024-01-01T00:00:05Z", "level": "ERROR", "source": "db", "message": "connection lost"}
+{"timestamp": "2024-01-01T00:00:10Z", "level": "CRITICAL", "source": "db", "message": "out of memory"}
+{"timestamp": "2024-01-01T00:00:15Z", "level": "CRITICAL", "source": "app", "message": "out of memory"}
+{"timestamp": "2024-01-01T00:00:20Z", "level": "WARNING", "source": "app", "message": "slow"}
