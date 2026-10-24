@@ -1,0 +1,4 @@
+timestamp,level,source,message
+2024-01-01T00:00:00Z,INFO,app,ok
+2024-01-01T00:00:01Z,NOT_A_LEVEL,app,bad
+2024-01-01T00:00:02Z,INFO,app,ok2
