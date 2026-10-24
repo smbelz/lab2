@@ -2,8 +2,8 @@
 
 from datetime import UTC, datetime
 
-from .errors import UnsupportedFileTypeError
-from .parsers import parser_csv, parser_jsonl
+from streamstats.errors import UnsupportedFileTypeError
+from streamstats.parsers import parser_csv, parser_jsonl
 
 
 def analyze(input_files: list[str], input_format: str, skip_invalid: bool = False) -> tuple[dict, dict, dict]:
