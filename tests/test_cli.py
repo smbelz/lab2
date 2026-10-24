@@ -63,21 +63,32 @@ expected = {
         "worker": 2,
         "scheduler": 2,
     },
-    "ERROR|CRITICAL": [
-        {"sources": "queue", "count": 2},
+    "top_CRITICAL_sources": [
         {"sources": "api", "count": 1},
-        {"sources": "auth", "count": 1},
         {"sources": "billing", "count": 1},
+        {"sources": "db", "count": 1},
+        {"sources": "queue", "count": 1},
+    ],
+    "top_ERROR_sources": [
+        {"sources": "auth", "count": 1},
         {"sources": "cache", "count": 1},
+        {"sources": "queue", "count": 1},
+        {"sources": "scheduler", "count": 1},
+        {"sources": "storage", "count": 1},
+    ],
+    "top_ERROR|CRITICAL": [
+        {"sources": "queue", "critical": 1, "error": 1},
+        {"sources": "api", "critical": 1, "error": 0},
+        {"sources": "billing", "critical": 1, "error": 0},
+        {"sources": "db", "critical": 1, "error": 0},
+        {"sources": "auth", "critical": 0, "error": 1},
     ],
 }
 
 
 def test_cli_jsonl(tmp_path) -> None:
     files = []
-    for i, data in enumerate(
-        [data_one, data_two, data_three, data_four, data_five], start=1,
-    ):
+    for i, data in enumerate([data_one, data_two, data_three, data_four, data_five], start=1):
         path = tmp_path / f"file_{i}.jsonl"
         with path.open("w", encoding="utf-8") as f:
             for line in data:
